@@ -1,0 +1,30 @@
+# Ignore all files by default
+*
+
+# Allow only specific files
+!index.html
+!styles.css
+!script.js
+!Vilopa_Patel_Profile.md
+!.gitignore
+!README.md
+
+# Ignore temporary files
+~$*
+*.tmp
+*.temp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore large files that shouldn't be in repo
+*.pdf
+*.docx
+*.ipynb 

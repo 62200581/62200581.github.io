@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeProgressBars();
     initializeScrollEffects();
     initializePrintFunctionality();
+    initializeNavigationTabs();
     
     // Add smooth scrolling for better UX
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -349,4 +350,33 @@ function addThemeToggle() {
 }
 
 // Uncomment the line below to add theme toggle
-// addThemeToggle(); 
+// addThemeToggle();
+
+// Initialize navigation tabs functionality
+function initializeNavigationTabs() {
+    const navTabs = document.querySelectorAll('.nav-tab');
+    const sections = document.querySelectorAll('.section');
+    
+    navTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetSection = this.getAttribute('data-section');
+            
+            // Remove active class from all tabs
+            navTabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show target section
+            const targetElement = document.getElementById(targetSection);
+            if (targetElement) {
+                targetElement.classList.add('active');
+            }
+        });
+    });
+} 

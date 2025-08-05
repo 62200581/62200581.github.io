@@ -1,5 +1,3 @@
-# Ignore all files by default
-*
 
 # Allow only specific files
 !index.html

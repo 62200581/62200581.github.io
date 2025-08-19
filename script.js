@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initializeDownloadFunctions();
     initializeEnhancedAnimations();
+    
+    // Initialize enhanced interactive features
+    initializeEnhancedFeatures();
 
     
     // Add smooth scrolling for better UX
@@ -1024,4 +1027,138 @@ function toggleGASetup() {
     } else {
         btn.innerHTML = '<i class="fas fa-eye"></i> Show Setup Guide';
     }
-} 
+}
+
+// Enhanced Interactive Features
+function initializeEnhancedFeatures() {
+    // Add parallax effect to header
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const header = document.querySelector('.header');
+        if (header) {
+            header.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+    });
+
+    // Add typing effect to profile title
+    const profileTitle = document.querySelector('.profile-details h1');
+    if (profileTitle) {
+        const text = profileTitle.textContent;
+        profileTitle.textContent = '';
+        profileTitle.style.borderRight = '2px solid #fff';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                profileTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                profileTitle.style.borderRight = 'none';
+            }
+        };
+        typeWriter();
+    }
+
+    // Add floating particles effect
+    createFloatingParticles();
+
+    // Add smooth reveal animations
+    initializeSmoothReveals();
+}
+
+// Create floating particles background
+function createFloatingParticles() {
+    const container = document.querySelector('.container');
+    if (!container) return;
+
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'floating-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 2}s;
+        `;
+        container.appendChild(particle);
+    }
+}
+
+// Initialize smooth reveal animations
+function initializeSmoothReveals() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all project cards and sections
+    document.querySelectorAll('.project-card, .section').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Add ripple effect to buttons
+function addRippleEffect(element) {
+    element.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        `;
+        
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    });
+}
+
+// Initialize ripple effects
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('button, .project-link').forEach(addRippleEffect);
+});
+
+// Add CSS for ripple animation
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle); 

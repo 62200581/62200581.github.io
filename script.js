@@ -1,13 +1,14 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Initialize all animations and interactions
-    initializeAnimations();
-    initializeSkillTags();
-    initializeProgressBars();
-    initializeScrollEffects();
-    initializePrintFunctionality();
+    // Initialize all features
     initializeNavigationTabs();
+    
+    initializeContactForm();
+
+    initializeDownloadFunctions();
+    initializeEnhancedAnimations();
+
     
     // Add smooth scrolling for better UX
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -379,4 +380,648 @@ function initializeNavigationTabs() {
             }
         });
     });
+} 
+
+
+
+// Contact Form Handling
+function initializeContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Show success message
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            
+            // Reset form
+            this.reset();
+            
+            // Simulate form submission (replace with actual backend integration)
+            console.log('Contact Form Submission:', { name, email, subject, message });
+        });
+    }
+}
+
+
+
+// Download CV Functions
+function initializeDownloadFunctions() {
+    // These functions will be called by the onclick events in HTML
+    window.downloadCV = function(format) {
+        if (format === 'pdf') {
+            showNotification('Preparing PDF download...', 'info');
+            // Add actual PDF generation logic here
+            setTimeout(() => {
+                showNotification('PDF download started!', 'success');
+            }, 2000);
+        } else if (format === 'docx') {
+            showNotification('Preparing DOCX download...', 'info');
+            // Add actual DOCX generation logic here
+            setTimeout(() => {
+                showNotification('DOCX download started!', 'success');
+            }, 2000);
+        }
+    };
+    
+    window.printCV = function() {
+        showNotification('Opening print dialog...', 'info');
+        window.print();
+    };
+}
+
+// Enhanced Animations
+function initializeEnhancedAnimations() {
+
+    
+
+    
+    // Contact form input animations
+    const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+    });
+}
+
+// Enhanced Notification System
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+        <button class="notification-close">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        max-width: 400px;
+        animation: slideInRight 0.3s ease;
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    });
+    
+    // Add notification animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+ 
+
+
+
+
+
+
+function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function simulateLocation() {
+    // Simulate different locations for demo purposes
+    const locations = [
+        { country: 'United States', city: 'New York', flag: '🇺🇸' },
+        { country: 'United Kingdom', city: 'London', flag: '🇬🇧' },
+        { country: 'Canada', city: 'Toronto', flag: '🇨🇦' },
+        { country: 'Australia', city: 'Sydney', flag: '🇦🇺' },
+        { country: 'Germany', city: 'Berlin', flag: '🇩🇪' },
+        { country: 'France', city: 'Paris', flag: '🇫🇷' },
+        { country: 'Japan', city: 'Tokyo', flag: '🇯🇵' },
+        { country: 'India', city: 'Mumbai', flag: '🇮🇳' }
+    ];
+    
+    return locations[Math.floor(Math.random() * locations.length)];
+}
+
+function storeVisitorData(visitorData) {
+    // Get existing data from localStorage
+    let analyticsData = JSON.parse(localStorage.getItem('analyticsData')) || {
+        totalVisits: 0,
+        uniqueVisitors: 0,
+        visitors: [],
+        locations: {},
+        devices: { desktop: 0, mobile: 0, tablet: 0 },
+        browsers: {},
+        sources: {},
+        dailyStats: {}
+    };
+    
+    // Update total visits
+    analyticsData.totalVisits++;
+    
+    // Check if this is a unique visitor (simple check based on session)
+    const isUnique = !analyticsData.visitors.some(v => 
+        v.userAgent === visitorData.userAgent && 
+        v.platform === visitorData.platform
+    );
+    
+    if (isUnique) {
+        analyticsData.uniqueVisitors++;
+    }
+    
+    // Add visitor to list (keep only last 50)
+    analyticsData.visitors.unshift(visitorData);
+    if (analyticsData.visitors.length > 50) {
+        analyticsData.visitors = analyticsData.visitors.slice(0, 50);
+    }
+    
+    // Update location stats
+    const locationKey = `${visitorData.location.country}-${visitorData.location.city}`;
+    analyticsData.locations[locationKey] = (analyticsData.locations[locationKey] || 0) + 1;
+    
+    // Update device stats
+    analyticsData.devices[visitorData.deviceType]++;
+    
+    // Update browser stats
+    analyticsData.browsers[visitorData.browser] = (analyticsData.browsers[visitorData.browser] || 0) + 1;
+    
+    // Update source stats
+    const source = visitorData.referrer === 'Direct' ? 'Direct' : 'Referral';
+    analyticsData.sources[source] = (analyticsData.sources[source] || 0) + 1;
+    
+    // Update daily stats
+    const today = new Date().toISOString().split('T')[0];
+    if (!analyticsData.dailyStats[today]) {
+        analyticsData.dailyStats[today] = 0;
+    }
+    analyticsData.dailyStats[today]++;
+    
+    // Store updated data
+    localStorage.setItem('analyticsData', JSON.stringify(analyticsData));
+}
+
+function loadAnalyticsData() {
+    const analyticsData = JSON.parse(localStorage.getItem('analyticsData')) || {
+        totalVisits: 0,
+        uniqueVisitors: 0,
+        visitors: [],
+        locations: {},
+        devices: { desktop: 0, mobile: 0, tablet: 0 },
+        browsers: {},
+        sources: {},
+        dailyStats: {}
+    };
+    
+    // Update stats display
+    updateStatsDisplay(analyticsData);
+    
+    // Update location list
+    updateLocationList(analyticsData.locations);
+    
+    // Update visitors list
+    updateVisitorsList(analyticsData.visitors);
+    
+    // Update sources chart
+    updateSourcesChart(analyticsData.sources);
+    
+    // Update device stats
+    updateDeviceStats(analyticsData.devices);
+    
+    // Update current visitors
+    updateCurrentVisitors();
+}
+
+function updateStatsDisplay(data) {
+    document.getElementById('totalVisits').textContent = data.totalVisits.toLocaleString();
+    document.getElementById('uniqueVisitors').textContent = data.uniqueVisitors.toLocaleString();
+    
+    // Calculate today's visits
+    const today = new Date().toISOString().split('T')[0];
+    const todayVisits = data.dailyStats[today] || 0;
+    document.getElementById('todayVisits').textContent = todayVisits;
+    
+    // Calculate this month's visits
+    const thisMonth = new Date().getMonth();
+    const thisYear = new Date().getFullYear();
+    let monthVisits = 0;
+    
+    Object.keys(data.dailyStats).forEach(date => {
+        const dateObj = new Date(date);
+        if (dateObj.getMonth() === thisMonth && dateObj.getFullYear() === thisYear) {
+            monthVisits += data.dailyStats[date];
+        }
+    });
+    
+    document.getElementById('thisMonth').textContent = monthVisits;
+}
+
+function updateLocationList(locations) {
+    const locationList = document.getElementById('locationList');
+    const sortedLocations = Object.entries(locations)
+        .sort(([,a], [,b]) => b - a)
+        .slice(0, 10);
+    
+    locationList.innerHTML = sortedLocations.map(([location, count]) => {
+        const [country, city] = location.split('-');
+        return `
+            <div class="location-item">
+                <div class="location-flag">${getFlagEmoji(country)}</div>
+                <span class="location-name">${city}, ${country}</span>
+                <span class="location-count">${count}</span>
+            </div>
+        `;
+    }).join('');
+}
+
+function getFlagEmoji(country) {
+    const flagEmojis = {
+        'United States': '🇺🇸',
+        'United Kingdom': '🇬🇧',
+        'Canada': '🇨🇦',
+        'Australia': '🇦🇺',
+        'Germany': '🇩🇪',
+        'France': '🇫🇷',
+        'Japan': '🇯🇵',
+        'India': '🇮🇳'
+    };
+    return flagEmojis[country] || '🌍';
+}
+
+function updateVisitorsList(visitors) {
+    const visitorsList = document.getElementById('visitorsList');
+    const recentVisitors = visitors.slice(0, 8);
+    
+    visitorsList.innerHTML = recentVisitors.map(visitor => {
+        const timeAgo = getTimeAgo(new Date(visitor.timestamp));
+        const initials = getInitials(visitor.location.city);
+        
+        return `
+            <div class="visitor-item">
+                <div class="visitor-avatar">${initials}</div>
+                <div class="visitor-info">
+                    <div class="visitor-name">${visitor.location.city}, ${visitor.location.country}</div>
+                    <div class="visitor-details">${visitor.deviceType} • ${visitor.browser}</div>
+                </div>
+                <div class="visitor-time">${timeAgo}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function getTimeAgo(date) {
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+    
+    if (diffInSeconds < 60) return 'Just now';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
+    return `${Math.floor(diffInSeconds / 86400)}d ago`;
+}
+
+function getInitials(city) {
+    return city.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function updateSourcesChart(sources) {
+    const sourcesChart = document.getElementById('sourcesChart');
+    const total = Object.values(sources).reduce((sum, count) => sum + count, 0);
+    
+    sourcesChart.innerHTML = Object.entries(sources).map(([source, count]) => {
+        const percentage = Math.round((count / total) * 100);
+        const icon = source === 'Direct' ? '🔗' : '📤';
+        
+        return `
+            <div class="source-item">
+                <div class="source-icon">${icon}</div>
+                <span class="source-name">${source}</span>
+                <span class="source-percentage">${percentage}%</span>
+            </div>
+        `;
+    }).join('');
+}
+
+function updateDeviceStats(devices) {
+    const total = Object.values(devices).reduce((sum, count) => sum + count, 0);
+    
+    if (total > 0) {
+        document.getElementById('desktopPercent').textContent = 
+            Math.round((devices.desktop / total) * 100) + '%';
+        document.getElementById('mobilePercent').textContent = 
+            Math.round((devices.mobile / total) * 100) + '%';
+        document.getElementById('tabletPercent').textContent = 
+            Math.round((devices.tablet / total) * 100) + '%';
+    }
+}
+
+function updateCurrentVisitors() {
+    // Simulate current online visitors
+    const currentVisitors = Math.floor(Math.random() * 5) + 1;
+    document.getElementById('currentVisitors').textContent = currentVisitors;
+}
+
+function setupAnalyticsControls() {
+    // Refresh button
+    document.getElementById('refreshAnalytics').addEventListener('click', () => {
+        loadAnalyticsData();
+        showNotification('Analytics data refreshed!', 'success');
+    });
+    
+    // Export button
+    document.getElementById('exportAnalytics').addEventListener('click', () => {
+        exportAnalyticsReport();
+    });
+    
+    // Reset button
+    document.getElementById('resetAnalytics').addEventListener('click', () => {
+        if (confirm('Are you sure you want to reset all analytics data? This cannot be undone.')) {
+            resetAnalyticsData();
+        }
+    });
+}
+
+function exportAnalyticsReport() {
+    const analyticsData = JSON.parse(localStorage.getItem('analyticsData')) || {};
+    
+    // Create CSV content
+    let csvContent = 'Data Type,Value,Count\n';
+    
+    // Add visitor stats
+    csvContent += `Total Visits,,${analyticsData.totalVisits || 0}\n`;
+    csvContent += `Unique Visitors,,${analyticsData.uniqueVisitors || 0}\n`;
+    
+    // Add location data
+    Object.entries(analyticsData.locations || {}).forEach(([location, count]) => {
+        csvContent += `Location,${location},${count}\n`;
+    });
+    
+    // Add device data
+    Object.entries(analyticsData.devices || {}).forEach(([device, count]) => {
+        csvContent += `Device,${device},${count}\n`;
+    });
+    
+    // Create and download file
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `analytics_report_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    
+    showNotification('Analytics report exported successfully!', 'success');
+}
+
+function resetAnalyticsData() {
+    localStorage.removeItem('analyticsData');
+    loadAnalyticsData();
+    showNotification('Analytics data has been reset!', 'info');
+}
+
+function startRealTimeUpdates() {
+    // Update current visitors every 30 seconds
+    setInterval(updateCurrentVisitors, 30000);
+    
+    // Simulate new visitors occasionally
+    setInterval(() => {
+        if (Math.random() < 0.3) { // 30% chance every 30 seconds
+            trackNewVisitor();
+            loadAnalyticsData();
+        }
+    }, 30000);
+}
+
+// Certificate Modal Functions
+function openCertificate(fileSrc) {
+    const modal = document.getElementById('certificateModal');
+    const modalContent = document.getElementById('modalContent');
+    
+    // Check if it's a PDF or image file
+    if (fileSrc.toLowerCase().endsWith('.pdf')) {
+        // For PDF files, create an iframe or download link
+        modalContent.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <i class="fas fa-file-pdf" style="font-size: 5rem; color: #e74c3c; margin-bottom: 20px;"></i>
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">PDF Certificate</h3>
+                <p style="color: #64748b; margin-bottom: 25px;">This is a PDF certificate file.</p>
+                <a href="${fileSrc}" download class="view-certificate-btn" style="text-decoration: none; display: inline-block;">
+                    <i class="fas fa-download"></i> Download PDF Certificate
+                </a>
+            </div>
+        `;
+    } else {
+        // For image files, display the image
+        modalContent.innerHTML = `<img src="${fileSrc}" alt="Certificate" class="certificate-modal-image">`;
+    }
+    
+    modal.style.display = 'block';
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    
+    // Add click outside modal to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeCertificate();
+        }
+    });
+    
+    // Add escape key to close
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCertificate();
+        }
+    });
+}
+
+function closeCertificate() {
+    const modal = document.getElementById('certificateModal');
+    modal.style.display = 'none';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+    
+    // Clear the modal content
+    document.getElementById('modalContent').innerHTML = '';
+}
+
+// Download PDF Certificate Function
+function downloadPDFCertificate(pdfPath) {
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = pdfPath;
+    link.download = 'Data_Science_Certificate.pdf';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Show success notification
+    showNotification('PDF certificate download started!', 'success');
+}
+
+// Google Analytics Integration Functions
+function loadGoogleAnalyticsData() {
+    // Check if Google Analytics is loaded
+    if (typeof gtag !== 'undefined') {
+        console.log('Google Analytics detected! Loading real data...');
+        
+        // Track page view
+        gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href
+        });
+        
+        // Try to get real-time data if available
+        getRealTimeData();
+        
+        // Show Google Analytics status
+        showGoogleAnalyticsStatus(true);
+    } else {
+        console.log('Google Analytics not detected. Using simulated data.');
+        showGoogleAnalyticsStatus(false);
+    }
+}
+
+function getRealTimeData() {
+    // This function would integrate with Google Analytics Real-Time API
+    // For now, we'll simulate the integration
+    if (typeof gtag !== 'undefined') {
+        // Track custom events for better analytics
+        gtag('event', 'profile_view', {
+            event_category: 'engagement',
+            event_label: 'profile_visit'
+        });
+        
+        // Track section views
+        trackSectionViews();
+    }
+}
+
+function trackSectionViews() {
+    // Track when users view different sections
+            const sections = ['overview', 'education', 'experience', 'projects', 'skills', 'certificates'];
+    
+    sections.forEach(section => {
+        const sectionElement = document.getElementById(section);
+        if (sectionElement) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && typeof gtag !== 'undefined') {
+                        gtag('event', 'section_view', {
+                            event_category: 'engagement',
+                            event_label: section,
+                            value: 1
+                        });
+                    }
+                });
+            });
+            
+            observer.observe(sectionElement);
+        }
+    });
+}
+
+function showGoogleAnalyticsStatus(isActive) {
+    // Create or update status indicator
+    let statusElement = document.getElementById('gaStatus');
+    if (!statusElement) {
+        statusElement = document.createElement('div');
+        statusElement.id = 'gaStatus';
+        statusElement.className = 'ga-status';
+        statusElement.innerHTML = `
+            <i class="fas ${isActive ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+            <span>Google Analytics: ${isActive ? 'Active' : 'Not Connected'}</span>
+        `;
+        
+        // Insert after the analytics title
+        const titleElement = document.querySelector('#analytics .section-title');
+        if (titleElement) {
+            titleElement.parentNode.insertBefore(statusElement, titleElement.nextSibling);
+        }
+    } else {
+        statusElement.innerHTML = `
+            <i class="fas ${isActive ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+            <span>Google Analytics: ${isActive ? 'Active' : 'Not Connected'}</span>
+        `;
+    }
+}
+
+// Enhanced analytics with real data support
+function enhanceAnalyticsWithRealData() {
+    // This function can be called to enhance analytics with real data sources
+    if (typeof gtag !== 'undefined') {
+        // Add more sophisticated tracking
+        gtag('event', 'analytics_enhanced', {
+            event_category: 'system',
+            event_label: 'real_data_integration'
+        });
+        
+        showNotification('Real-time analytics enhanced with Google Analytics!', 'success');
+    }
+}
+
+// Toggle Google Analytics setup guide
+function toggleGASetup() {
+    const content = document.querySelector('.ga-setup-content');
+    content.classList.toggle('show');
+    
+    const btn = document.querySelector('.ga-setup-btn');
+    if (content.classList.contains('show')) {
+        btn.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Setup Guide';
+    } else {
+        btn.innerHTML = '<i class="fas fa-eye"></i> Show Setup Guide';
+    }
 } 

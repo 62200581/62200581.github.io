@@ -1,6 +1,18 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Hide loading screen after a short delay
+    setTimeout(() => {
+        const loadingElement = document.getElementById('loading');
+        if (loadingElement) {
+            loadingElement.classList.add('hidden');
+            // Remove from DOM after animation completes
+            setTimeout(() => {
+                loadingElement.remove();
+            }, 500);
+        }
+    }, 1000);
+    
     // Initialize all features
     initializeNavigationTabs();
     
@@ -308,6 +320,15 @@ document.addEventListener('keydown', function(e) {
 
 // Add loading animation
 window.addEventListener('load', function() {
+    // Ensure loading screen is hidden
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+        loadingElement.classList.add('hidden');
+        setTimeout(() => {
+            loadingElement.remove();
+        }, 500);
+    }
+    
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
     
@@ -1162,4 +1183,4 @@ rippleStyle.textContent = `
         }
     }
 `;
-document.head.appendChild(rippleStyle); 
+document.head.appendChild(rippleStyle);

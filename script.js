@@ -1072,16 +1072,17 @@ function createFloatingParticles() {
     const container = document.querySelector('.container');
     if (!container) return;
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 8; i++) {
         const particle = document.createElement('div');
         particle.className = 'floating-particle';
         particle.style.cssText = `
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
+            width: 3px;
+            height: 3px;
+            background: rgba(102, 126, 234, 0.1);
             border-radius: 50%;
             pointer-events: none;
+            z-index: -1;
             animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;

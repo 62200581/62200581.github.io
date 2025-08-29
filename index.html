@@ -13,17 +13,14 @@
     <div class="loading" id="loading"><div class="spinner"></div></div>
     <div class="container">
         <nav class="nav-tabs">
-            <button class="nav-tab active" data-section="overview">Overview</button>
+            <button class="nav-tab active" data-section="overview">Overview & Contact</button>
             <button class="nav-tab" data-section="education">Education</button>
             <button class="nav-tab" data-section="experience">Experience</button>
-                            <button class="nav-tab" data-section="projects">Projects & Portfolio</button>
-                <button class="nav-tab" data-section="skills">Skills & Languages</button>
-
+            <button class="nav-tab" data-section="projects">Projects & Portfolio</button>
+            <button class="nav-tab" data-section="skills">Skills & Languages</button>
             <button class="nav-tab" data-section="certificates">Certificates</button>
-            <button class="nav-tab" data-section="contact">Contact</button>
-                            <button class="nav-tab" data-section="download">Download CV</button>
-                
-            </nav>
+            <button class="nav-tab" data-section="download">Download CV</button>
+        </nav>
         <header class="header">
             <div class="profile-info">
                 <div class="profile-image">
@@ -37,23 +34,116 @@
             </div>
         </header>
         <section class="section active" id="overview">
-            <section class="contact-section">
-                <h3><i class="fas fa-address-card"></i> Contact Information</h3>
-                <div class="contact-grid">
-                    <div class="contact-item" data-copy="2022vilopapatel@gmail.com">
-                        <i class="fas fa-envelope"></i><span>2022vilopapatel@gmail.com</span>
-                    </div>
-                    <div class="contact-item" data-copy="+43 665 659 01530">
-                        <i class="fas fa-phone"></i><span>+43 665 659 01530</span>
-                    </div>
-                    <div class="contact-item" data-copy="Linzer Strasse 429/2218B, Vienna - 1140, Austria">
-                        <i class="fas fa-map-marker-alt"></i><span>Linzer Strasse 429/2218B, Vienna - 1140, Austria</span>
-                    </div>
-                    <div class="contact-item" data-copy="30-01-1996">
-                        <i class="fas fa-birthday-cake"></i><span>30-01-1996</span>
+            <div class="overview-container">
+                <!-- Contact Information Section -->
+                <div class="contact-section">
+                    <h3><i class="fas fa-address-card"></i> Contact Information</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item" data-copy="2022vilopa@gmail.com">
+                            <i class="fas fa-envelope"></i><span>2022vilopa@gmail.com</span>
+                        </div>
+                        <div class="contact-item" data-copy="+43 66565901530">
+                            <i class="fas fa-phone"></i><span>+43 66565901530</span>
+                        </div>
+                        <div class="contact-item" data-copy="Linzer Strasse 429/2218B, Vienna - 1140, Austria">
+                            <i class="fas fa-map-marker-alt"></i><span>Linzer Strasse 429/2218B, Vienna - 1140, Austria</span>
+                        </div>
+                        <div class="contact-item" data-copy="30-01-1996">
+                            <i class="fas fa-birthday-cake"></i><span>30-01-1996</span>
+                        </div>
                     </div>
                 </div>
-            </section>
+
+                <!-- Professional Summary Section -->
+                <div class="summary-section">
+                    <h3><i class="fas fa-user-tie"></i> Professional Summary</h3>
+                    <p class="summary-text">
+                        Passionate Data Science student and Software Developer with a strong foundation in computer science and electrical design. 
+                        Currently pursuing BSc in Applied Data Science at Modul University, Vienna, with expertise in Python, R, SQL, and JavaScript. 
+                        Experienced in machine learning, data analysis, and web development. Seeking opportunities to apply analytical skills 
+                        and contribute to innovative data-driven solutions.
+                    </p>
+                </div>
+
+                <!-- Contact Form Section -->
+                <div class="contact-form-section">
+                    <h3><i class="fas fa-envelope"></i> Get In Touch</h3>
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Location</h4>
+                                    <p>Vienna, Austria</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p>2022vilopa@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <p>+43 66565901530</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="contact-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Available</h4>
+                                    <p>Mon - Fri, 9:00 AM - 6:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form">
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                    <label for="name">Name</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                    <label for="email">Email</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                                    <label for="subject">Subject</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                                    <label for="message">Message</label>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn">
+                                    <span>Send Message</span>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="section" id="education">
             <h3><i class="fas fa-graduation-cap"></i> Education</h3>
@@ -475,7 +565,7 @@
                     <div class="social-links">
                         <a href="https://github.com/62200581" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/vilopa-patel-62200581/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="mailto:vilopa.patel@example.com"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:2022vilopa@gmail.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://www.kaggle.com/vilopapatel" target="_blank"><i class="fab fa-kaggle"></i></a>
                     </div>
                 </div>

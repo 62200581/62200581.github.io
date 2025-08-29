@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     initializeContactForm();
 
-    initializeDownloadFunctions();
     initializeEnhancedAnimations();
     
     // Initialize enhanced interactive features
@@ -181,45 +180,7 @@ function initializeScrollEffects() {
     });
 }
 
-// Initialize print functionality
-function initializePrintFunctionality() {
-    // Add print button functionality if needed
-    const printButton = document.createElement('button');
-    printButton.innerHTML = '<i class="fas fa-print"></i> Print Profile';
-    printButton.className = 'print-btn';
-    printButton.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #3498db;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-        transition: all 0.3s ease;
-        z-index: 1000;
-    `;
-    
-    printButton.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px)';
-        this.style.boxShadow = '0 6px 20px rgba(52, 152, 219, 0.4)';
-    });
-    
-    printButton.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '0 4px 15px rgba(52, 152, 219, 0.3)';
-    });
-    
-    printButton.addEventListener('click', function() {
-        window.print();
-    });
-    
-    document.body.appendChild(printButton);
-}
+
 
 // Add contact information copy functionality
 function initializeContactCopy() {
@@ -306,12 +267,6 @@ initializeContactCopy();
 
 // Add keyboard shortcuts
 document.addEventListener('keydown', function(e) {
-    // Ctrl/Cmd + P for print
-    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-        e.preventDefault();
-        window.print();
-    }
-    
     // Escape key to close any open modals (if any)
     if (e.key === 'Escape') {
         // Add any modal closing logic here
@@ -437,30 +392,7 @@ function initializeContactForm() {
 
 
 
-// Download CV Functions
-function initializeDownloadFunctions() {
-    // These functions will be called by the onclick events in HTML
-    window.downloadCV = function(format) {
-        if (format === 'pdf') {
-            showNotification('Preparing PDF download...', 'info');
-            // Add actual PDF generation logic here
-            setTimeout(() => {
-                showNotification('PDF download started!', 'success');
-            }, 2000);
-        } else if (format === 'docx') {
-            showNotification('Preparing DOCX download...', 'info');
-            // Add actual DOCX generation logic here
-            setTimeout(() => {
-                showNotification('DOCX download started!', 'success');
-            }, 2000);
-        }
-    };
-    
-    window.printCV = function() {
-        showNotification('Opening print dialog...', 'info');
-        window.print();
-    };
-}
+
 
 // Enhanced Animations
 function initializeEnhancedAnimations() {

@@ -455,6 +455,12 @@ section h3 i {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 /* Real Project Badge Styling */
@@ -484,6 +490,10 @@ section h3 i {
 
 .project-link:hover {
     color: #7C3AED;
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
 }
 
 /* GitHub Link Styling */
@@ -1007,7 +1017,7 @@ section h3 i {
     flex-wrap: wrap;
 }
 
-.download-btn {
+.download-link {
     padding: 15px 30px;
     border: none;
     border-radius: 12px;
@@ -1021,20 +1031,21 @@ section h3 i {
     text-decoration: none;
 }
 
-.download-btn.primary {
+.download-link.primary {
     background: linear-gradient(45deg, #8B5CF6, #A78BFA);
     color: white;
 }
 
-.download-btn.secondary {
+.download-link.secondary {
     background: white;
     color: #8B5CF6;
     border: 2px solid #8B5CF6;
 }
 
-.download-btn:hover {
+.download-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    text-decoration: none;
 }
 
 /* Enhanced Footer */
@@ -1750,11 +1761,7 @@ section h3 i {
     transition: all 0.3s ease;
 }
 
-/* Enhanced Button Hover Effects */
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
+
 
 /* Enhanced Link Hover Effects */
 a:hover {

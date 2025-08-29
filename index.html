@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vilopa Patel - CV</title>
+    <title>Vilopa Patel </title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <div class="loading" id="loading"><div class="spinner"></div></div>
     <div class="container">
         <nav class="nav-tabs">
-            <button class="nav-tab active" data-section="overview">Overview</button>
+            <button class="nav-tab active" data-section="overview">Overview & Contact</button>
             <button class="nav-tab" data-section="education">Education</button>
             <button class="nav-tab" data-section="experience">Experience</button>
-            <button class="nav-tab" data-section="projects">Projects</button>
-            <button class="nav-tab" data-section="skills">Skills</button>
+            <button class="nav-tab" data-section="projects">Projects & Portfolio</button>
+            <button class="nav-tab" data-section="skills">Skills & Languages</button>
             <button class="nav-tab" data-section="certificates">Certificates</button>
+            <button class="nav-tab" data-section="download">Download CV</button>
         </nav>
-        
         <header class="header">
             <div class="profile-info">
                 <div class="profile-image">
@@ -32,9 +33,9 @@
                 </div>
             </div>
         </header>
-        
         <section class="section active" id="overview">
             <div class="overview-container">
+                <!-- Contact Information Section -->
                 <div class="contact-section">
                     <h3><i class="fas fa-address-card"></i> Contact Information</h3>
                     <div class="contact-grid">
@@ -52,9 +53,10 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </section>
-        
         <section class="section" id="education">
             <h3><i class="fas fa-graduation-cap"></i> Education</h3>
             <div class="timeline">
@@ -87,9 +89,15 @@
                         <p class="period">2010 - Result: 80.17%</p>
                     </div>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Graphical Design Course</h4>
+                        <p class="institution">Professional Design Training</p>
+                        <p class="period">6 months - Comprehensive course in graphic design, poster creation, and logo design</p>
+                    </div>
+                </div>
             </div>
         </section>
-        
         <section class="section" id="experience">
             <h3><i class="fas fa-briefcase"></i> Experience</h3>
             <div class="experience-grid">
@@ -112,79 +120,409 @@
                         <li>Contributed to sales and marketing operations</li>
                     </ul>
                 </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h4>HR Team Member</h4><span class="period">Duration to be specified</span>
+                    </div>
+                    <ul>
+                        <li>Assisted in human resources operations</li>
+                    </ul>
+                </div>
             </div>
         </section>
-        
         <section class="section" id="projects">
-            <h3><i class="fas fa-code"></i> Projects</h3>
+            <h3><i class="fas fa-code"></i> Projects & Portfolio</h3>
+            <p style="text-align: center; color: #666; margin-bottom: 30px; font-style: italic;">
+                Showcasing real projects with GitHub repositories and research work
+            </p>
             <div class="projects-grid">
+
+                <div class="project-card portfolio-style">
+                    <div class="project-header">
+                        <h4>Butterfly Classification Ecosystem</h4><span class="project-type">Machine Learning</span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/8B5CF6/ffffff?text=Butterfly+ML" alt="Butterfly Classification Ecosystem">
+                    </div>
+                    <p class="project-description">Full-stack web application for butterfly and moth image classification with machine learning analytics and real-time processing.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span><span class="tech-tag">Machine Learning</span><span class="tech-tag">Web App</span><span class="tech-tag">Image Classification</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/62200581/butterfly" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                        <span class="project-link"><i class="fas fa-star"></i> Real Project</span>
+                    </div>
+                </div>
+
                 <div class="project-card">
-                    <h4>Butterfly Classification Ecosystem</h4>
-                    <p>Full-stack web application for butterfly and moth image classification with machine learning analytics</p>
-                    <a href="https://github.com/62200581/butterfly" target="_blank">View on GitHub</a>
+                    <div class="project-header">
+                        <h4>Scientific Reference Web App</h4><span class="project-type">Web Development</span>
+                    </div>
+                    <p class="project-description">Created web application for scientific reference management and citation tracking with modern web technologies.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span><span class="tech-tag">HTML/CSS</span><span class="tech-tag">Web Development</span><span class="tech-tag">Scientific Tools</span>
+                    </div>
+                                         <div class="project-links">
+                         <span class="project-link" style="opacity:0.6;cursor:default"><i class="fab fa-github"></i> Repository coming soon</span>
+                     </div>
+                </div>
+
+                
+                <!-- Enhanced Portfolio Items with Real Projects -->
+                <div class="project-card portfolio-style">
+                    <div class="project-header">
+                        <h4>Bakery Sales Dashboard</h4><span class="project-type">Data Analytics</span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/10B981/ffffff?text=Bakery+Analytics" alt="Bakery Sales Dashboard">
+                    </div>
+                    <p class="project-description">Interactive dashboard for bakery sales analysis with real-time data visualization, sales tracking, and performance metrics.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span><span class="tech-tag">Dashboard</span><span class="tech-tag">Data Analytics</span><span class="tech-tag">Business Intelligence</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/62200581/bakery" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                        <span class="project-link"><i class="fas fa-star"></i> Real Project</span>
+                    </div>
                 </div>
                 
-                <div class="project-card">
-                    <h4>Bakery Sales Dashboard</h4>
-                    <p>Python-based analytics dashboard for sales tracking and performance metrics</p>
-                    <a href="https://github.com/62200581/bakery" target="_blank">View on GitHub</a>
+                <div class="project-card portfolio-style">
+                    <div class="project-header">
+                        <h4>Agricultural Analytics Dashboard</h4><span class="project-type">Data Science</span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/059669/ffffff?text=Agricultural+Analytics" alt="Agricultural Analytics Dashboard">
+                    </div>
+                    <p class="project-description">Comprehensive agricultural analytics platform for crop monitoring, yield prediction, and farming optimization using advanced data science techniques.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span><span class="tech-tag">Machine Learning</span><span class="tech-tag">Agriculture</span><span class="tech-tag">Predictive Analytics</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/vilopa/Agricultural-dashboard" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                        <span class="project-link"><i class="fas fa-star"></i> Real Project</span>
+                    </div>
                 </div>
                 
-                <div class="project-card">
-                    <h4>Agricultural Analytics</h4>
-                    <p>Machine learning platform for crop monitoring and yield prediction</p>
-                    <a href="https://github.com/vilopa/Agricultural-dashboard" target="_blank">View on GitHub</a>
+                <div class="project-card portfolio-style">
+                    <div class="project-header">
+                        <h4>Movie Recommendation System</h4><span class="project-type">Machine Learning</span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/7C3AED/ffffff?text=Movie+Recommendations" alt="Movie Recommendation System">
+                    </div>
+                    <p class="project-description">Intelligent movie recommendation system using collaborative filtering and content-based algorithms to suggest personalized movie choices.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span><span class="tech-tag">Machine Learning</span><span class="tech-tag">Recommendation System</span><span class="tech-tag">Data Science</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/62200581/home8" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                        <span class="project-link"><i class="fas fa-star"></i> Real Project</span>
+                    </div>
                 </div>
                 
-                <div class="project-card">
-                    <h4>Movie Recommendation System</h4>
-                    <p>ML-based recommendation system using collaborative filtering</p>
-                    <a href="https://github.com/62200581/home8" target="_blank">View on GitHub</a>
+                <div class="project-card portfolio-style">
+                    <div class="project-header">
+                        <h4>Cacao Polyphenol Analysis</h4><span class="project-type">Research</span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/DC2626/ffffff?text=Research+Analysis" alt="Cacao Polyphenol Research">
+                    </div>
+                    <p class="project-description">Re-analysed data on cacao polyphenol accumulation and stress resistance (Zhang et al 2021) using advanced statistical methods and data visualization techniques.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">R</span><span class="tech-tag">Statistical Analysis</span><span class="tech-tag">Data Visualization</span><span class="tech-tag">Research</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="project-link"><i class="fas fa-star"></i> Research Project</span>
+                        <span class="project-link"><i class="fas fa-flask"></i> Scientific Analysis</span>
+                    </div>
                 </div>
                 
-                <div class="project-card">
-                    <h4>Cacao Research Analysis</h4>
-                    <p>Statistical analysis of polyphenol data using R and data visualization</p>
+                <!-- Personal CV Website Project -->
+                <div class="project-card portfolio-style">
+                    <div class="project-header">
+                        <h4>Personal CV Website</h4><span class="project-type">Web Development</span>
+                    </div>
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/8B5CF6/ffffff?text=CV+Website" alt="Personal CV Website">
+                    </div>
+                    <p class="project-description">Modern, responsive personal portfolio website built with HTML5, CSS3, and JavaScript. Features interactive navigation, project showcase, and professional design.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Responsive Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://62200581.github.io" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Website</a>
+                        <span class="project-link"><i class="fas fa-star"></i> Real Project</span>
+                    </div>
                 </div>
+                
+
             </div>
         </section>
-        
         <section class="section" id="skills">
-            <h3><i class="fas fa-tools"></i> Skills</h3>
+            <h3><i class="fas fa-tools"></i> Technical Skills</h3>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h4>Programming</h4>
-                    <p>Python, R, SQL, JavaScript</p>
+                    <h4>Programming Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span><span class="skill-tag">R</span><span class="skill-tag">SQL</span><span class="skill-tag">JavaScript</span>
+                    </div>
                 </div>
                 <div class="skill-category">
                     <h4>Data Science</h4>
-                    <p>Machine Learning, Statistical Analysis, Data Visualization</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Applied Data Science</span><span class="skill-tag">Machine Learning</span><span class="skill-tag">Statistical Analysis</span>
+                    </div>
                 </div>
                 <div class="skill-category">
-                    <h4>Languages</h4>
-                    <p>English (Fluent), Gujarati (Native), Hindi (Fluent), German (Intermediate)</p>
+                    <h4>Other Skills</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Electrical Design</span><span class="skill-tag">Circuit Design</span><span class="skill-tag">Software Development</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top:40px"><i class="fas fa-language"></i> Languages</h3>
+            <div class="languages-grid">
+                <div class="language-item">
+                    <span class="language-name">English</span>
+                    <div class="language-level">
+                        <div class="progress-bar"><div class="progress" style="width:90%"></div></div><span>Fluent</span>
+                    </div>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">Gujarati</span>
+                    <div class="language-level">
+                        <div class="progress-bar"><div class="progress" style="width:100%"></div></div><span>Native</span>
+                    </div>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">German</span>
+                    <div class="language-level">
+                        <div class="progress-bar"><div class="progress" style="width:60%"></div></div><span>Intermediate</span>
+                    </div>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">Hindi</span>
+                    <div class="language-level">
+                        <div class="progress-bar"><div class="progress" style="width:95%"></div></div><span>Fluent</span>
+                    </div>
                 </div>
             </div>
         </section>
         
+
+
+            
+
+        
+
+        
+        <!-- Certificates Section -->
         <section class="section" id="certificates">
-            <h3><i class="fas fa-certificate"></i> Certificates</h3>
+            <h3><i class="fas fa-certificate"></i> Professional Certificates</h3>
             <div class="certificates-grid">
                 <div class="certificate-card">
-                    <h4>Data Science & Machine Learning Principles for Natural Sciences</h4>
-                    <p>Professional certification covering fundamental principles of data science and machine learning applications</p>
-                    <span class="certificate-date">2024</span>
+                    <div class="certificate-image">
+                        <div class="pdf-preview" style="background: linear-gradient(135deg, #e74c3c, #c0392b); border-radius: 15px; padding: 30px; text-align: center; color: white; box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);">
+                            <i class="fas fa-file-pdf" style="font-size: 5rem; margin-bottom: 20px; display: block;"></i>
+                            <h4 style="margin: 0; font-size: 1.1rem; margin-bottom: 10px;">Data Science Certificate</h4>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">PDF Format</p>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h4>Data Science & Machine Learning Principles for Natural Sciences</h4>
+                        <p class="certificate-description">Comprehensive certification covering fundamental principles of data science and machine learning applications in natural sciences.</p>
+                        <div class="certificate-details">
+                            <span class="certificate-type"><i class="fas fa-graduation-cap"></i> Professional Certification</span>
+                            <span class="certificate-date"><i class="fas fa-calendar"></i> 2024</span>
+                        </div>
+                        <button class="view-certificate-btn" onclick="downloadPDFCertificate('img/Data_Science_Certificate.pdf')">
+                            <i class="fas fa-download"></i> Download PDF Certificate
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="certificate-card">
-                    <h4>Phytochemistry: Introduction to Plant Chemistry</h4>
-                    <p>Specialized course covering the fundamentals of plant chemistry and phytochemical analysis techniques</p>
-                    <span class="certificate-date">2024</span>
+                    <div class="certificate-image">
+                        <img src="img/Phytochemistry_Certificate.jpg" alt="Phytochemistry Certificate" class="certificate-photo">
+                    </div>
+                    <div class="certificate-content">
+                        <h4>Phytochemistry: Introduction to Plant Chemistry</h4>
+                        <p class="certificate-description">Specialized course covering the fundamentals of plant chemistry and phytochemical analysis techniques.</p>
+                        <div class="certificate-details">
+                            <span class="certificate-type"><i class="fas fa-leaf"></i> Specialized Course</span>
+                            <span class="certificate-date"><i class="fas fa-calendar"></i> 2024</span>
+                        </div>
+                        <button class="view-certificate-btn" onclick="openCertificate('img/Phytochemistry_Certificate.jpg')">
+                            <i class="fas fa-eye"></i> View Certificate
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
+        
+        <!-- Enhanced Contact Section with Form -->
+        <section class="section" id="contact">
+            <h3><i class="fas fa-envelope"></i> Get In Touch</h3>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Vienna, Austria</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>vilopa.patel@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+43 XXX XXX XXX</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Available</h4>
+                            <p>Mon - Fri, 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name">Name</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Download CV Section -->
+        <section class="section" id="download">
+            <h3><i class="fas fa-download"></i> Download My CV</h3>
+            <div class="download-container">
+                <div class="cv-preview">
+                    <div class="cv-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>Professional CV</h4>
+                    <p>Download my comprehensive CV in PDF format</p>
+                </div>
+                
+                <div class="download-options">
+                    <button class="download-btn primary" onclick="downloadCV('pdf')">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Download PDF</span>
+                    </button>
+                    
+                    <button class="download-btn secondary" onclick="downloadCV('docx')">
+                        <i class="fas fa-file-word"></i>
+                        <span>Download DOCX</span>
+                    </button>
+                    
+                    <button class="download-btn secondary" onclick="printCV()">
+                        <i class="fas fa-print"></i>
+                        <span>Print CV</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        
+        <!-- Enhanced Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Vilopa Patel</h4>
+                    <p>Data Scientist & Software Developer</p>
+                    <p>Passionate about turning data into insights</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#certificates">Certificates</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/62200581" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/vilopa-patel-62200581/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:2022vilopa@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.kaggle.com/vilopapatel" target="_blank"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vilopa Patel. All rights reserved.</p>
+                <p>Built with ❤️ and modern web technologies</p>
+            </div>
+        </footer>
     </div>
     
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="certificate-modal">
+        <div class="certificate-modal-content">
+            <span class="close-certificate" onclick="closeCertificate()">&times;</span>
+            <div id="modalContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="fab-container">
+        <button class="fab fab-primary" id="printBtn" title="Print Profile"><i class="fas fa-print"></i></button>
+        <button class="fab fab-secondary" id="downloadBtn" title="Download as PDF"><i class="fas fa-download"></i></button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html> 

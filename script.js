@@ -385,7 +385,7 @@ function initializeContactForm() {
             this.reset();
             
             // Simulate form submission (replace with actual backend integration)
-            console.log('Contact Form Submission:', { name, email, subject, message });
+            // Form data logged for development - remove in production
         });
     }
 }
@@ -872,7 +872,7 @@ function downloadPDFCertificate(pdfPath) {
 function loadGoogleAnalyticsData() {
     // Check if Google Analytics is loaded
     if (typeof gtag !== 'undefined') {
-        console.log('Google Analytics detected! Loading real data...');
+        // Google Analytics detected - loading real data
         
         // Track page view
         gtag('event', 'page_view', {
@@ -886,7 +886,7 @@ function loadGoogleAnalyticsData() {
         // Show Google Analytics status
         showGoogleAnalyticsStatus(true);
     } else {
-        console.log('Google Analytics not detected. Using simulated data.');
+        // Google Analytics not detected - using simulated data
         showGoogleAnalyticsStatus(false);
     }
 }
@@ -1102,7 +1102,9 @@ function addRippleEffect(element) {
 
 // Initialize ripple effects
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('button, .project-link').forEach(addRippleEffect);
+    // Only add ripple effect to buttons, not to actual links
+    // Temporarily disabled to test link functionality
+    // document.querySelectorAll('button, .project-link:not([href])').forEach(addRippleEffect);
 });
 
 // Add CSS for ripple animation

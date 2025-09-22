@@ -592,18 +592,33 @@ section h3 i {
 }
 
 /* Navigation Tabs */
-.nav-tabs {
+/* Consistent Dark Navigation Styles */
+.dark-nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 20px;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 50%, #0f1419 100%);
+    padding: 24px 40px;
+    border-radius: 12px;
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.nav-brand {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Inter', sans-serif;
+}
+
+.nav-items {
+    display: flex;
+    gap: 6px;
     flex-wrap: wrap;
-    gap: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Section Visibility */
@@ -615,35 +630,50 @@ section h3 i {
     display: block;
 }
 
-.nav-tab {
-    padding: 15px 28px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
+.dark-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    color: #333;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(5px);
 }
 
-.nav-tab.active {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.5);
+.dark-nav-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
-.nav-tab:hover:not(.active) {
-    background: rgba(255, 255, 255, 0.3);
-    color: #333;
-    transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.dark-nav-item:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-number {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    min-width: 20px;
+}
+
+.dark-nav-item.active .nav-number {
+    color: #ffffff;
+}
+
+.nav-label {
+    font-weight: 500;
 }
 
 /* Languages Section */
@@ -1821,4 +1851,215 @@ a:hover {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
+}
+
+/* Dark Layout - Overview Section */
+.dark-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 50%, #0f1419 100%);
+    margin: -40px;
+    padding: 60px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+
+/* Left Content Area */
+.left-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 60px 0 0;
+    color: white;
+}
+
+.branding {
+    margin-bottom: 80px;
+}
+
+.brand-name {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 8px;
+    color: white;
+    margin: 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 20px;
+}
+
+.section-number {
+    font-size: 8rem;
+    font-weight: 100;
+    color: #bdc3c7;
+    line-height: 1;
+    margin-right: 20px;
+}
+
+.section-line {
+    width: 2px;
+    height: 80px;
+    background: white;
+    margin-right: 20px;
+}
+
+.section-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: white;
+}
+
+.main-greeting {
+    margin-bottom: 40px;
+}
+
+.hello-text {
+    font-size: 4rem;
+    font-weight: 300;
+    color: white;
+    margin: 0;
+    position: relative;
+}
+
+.hello-text::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: white;
+}
+
+.about-text {
+    max-width: 500px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #bdc3c7;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* Right Portrait Area */
+.right-portrait {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+}
+
+.portrait-container {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.portrait-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    filter: grayscale(100%) contrast(1.2);
+    transition: transform 0.3s ease;
+}
+
+.portrait-image:hover {
+    transform: scale(1.02);
+}
+
+.page-indicators {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    height: 40px;
+    background: white;
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design for Dark Layout */
+@media (max-width: 768px) {
+    .dark-layout {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    .left-content {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    
+    .section-number {
+        font-size: 6rem;
+    }
+    
+    .hello-text {
+        font-size: 3rem;
+    }
+    
+    .brand-name {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+    
+    .social-icons {
+        top: 20px;
+        right: 20px;
+        gap: 15px;
+    }
+    
+    .page-indicators {
+        right: 10px;
+    }
 } 

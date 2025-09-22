@@ -334,7 +334,7 @@ function addThemeToggle() {
 
 // Initialize navigation tabs functionality
 function initializeNavigationTabs() {
-    const navTabs = document.querySelectorAll('.nav-tab');
+    const navTabs = document.querySelectorAll('.dark-nav-item');
     const sections = document.querySelectorAll('.section');
     
     navTabs.forEach(tab => {

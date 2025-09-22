@@ -12,51 +12,85 @@
 <body>
     <div class="loading" id="loading"><div class="spinner"></div></div>
     <div class="container">
-        <nav class="nav-tabs">
-            <button class="nav-tab active" data-section="overview">Overview & Contact</button>
-            <button class="nav-tab" data-section="education">Education</button>
-            <button class="nav-tab" data-section="experience">Experience</button>
-            <button class="nav-tab" data-section="projects">Projects & Portfolio</button>
-            <button class="nav-tab" data-section="skills">Skills & Languages</button>
-            <button class="nav-tab" data-section="certificates">Certificates</button>
-            <button class="nav-tab" data-section="download">Download CV</button>
-        </nav>
-        <header class="header">
-            <div class="profile-info">
-                <div class="profile-image">
-                    <img src="img/profile picture.jpg" alt="Vilopa Sanjaybhai Patel" class="profile-photo">
-                </div>
-                <div class="profile-details">
-                    <h1>Vilopaben Patel</h1>
-                    <h2>BSc in Applied Data Science</h2>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Vienna, Austria</p>
-                </div>
+        <nav class="dark-nav">
+            <div class="nav-brand"></div>
+            <div class="nav-items">
+                <button class="dark-nav-item active" data-section="overview">
+                    <span class="nav-label">Overview</span>
+                </button>
+                <button class="dark-nav-item" data-section="education">
+                    <span class="nav-label">Education</span>
+                </button>
+                <button class="dark-nav-item" data-section="experience">
+                    <span class="nav-label">Experience</span>
+                </button>
+                <button class="dark-nav-item" data-section="projects">
+                    <span class="nav-label">Projects</span>
+                </button>
+                <button class="dark-nav-item" data-section="skills">
+                    <span class="nav-label">Skills</span>
+                </button>
+                <button class="dark-nav-item" data-section="certificates">
+                    <span class="nav-label">Certificates</span>
+                </button>
+                <button class="dark-nav-item" data-section="download">
+                    <span class="nav-label">Download</span>
+                </button>
             </div>
-        </header>
+        </nav>
         <section class="section active" id="overview">
-            <div class="overview-container">
-                <!-- Contact Information Section -->
-                <div class="contact-section">
-                    <h3><i class="fas fa-address-card"></i> Contact Information</h3>
-                    <div class="contact-grid">
-                        <div class="contact-item" data-copy="2022vilopapatel@gmail.com">
-                            <i class="fas fa-envelope"></i><span>2022vilopapatel@gmail.com</span>
-                        </div>
-                        <div class="contact-item" data-copy="+43 665 659 01530">
-                            <i class="fas fa-phone"></i><span>+43 665 659 01530</span>
-                        </div>
-                        <div class="contact-item" data-copy="Linzer Strasse 429/2218B, Vienna - 1140, Austria">
-                            <i class="fas fa-map-marker-alt"></i><span> Vienna, Austria</span>
-                        </div>
-                        
-                        
-                        <div class="contact-item" data-copy="https://62200581.github.io/">
-                            <i class="fas fa-globe"></i><span>Portfolio: https://62200581.github.io/</span>
-                        </div>
+            <div class="dark-layout">
+                <!-- Left Content Area -->
+                <div class="left-content">
+                    <!-- Top Branding -->
+                    <div class="branding">
+                        <h1 class="brand-name">PATEL</h1>
+                    </div>
+                    
+                    <!-- Section Number and Title -->
+                    <div class="section-header">
+                        <div class="section-number">01</div>
+                        <div class="section-line"></div>
+                        <div class="section-label">INTRODUCE</div>
+                    </div>
+                    
+                    <!-- Main Greeting -->
+                    <div class="main-greeting">
+                        <h2 class="hello-text">Hello</h2>
+                    </div>
+                    
+                    <!-- About Text -->
+                    <div class="about-text">
+                        <p>My name is Vilopaben Patel, I'm from India living in Vienna, Austria, where I'm pursuing BSc in Applied Data Science at Modul University. With passionate, creative, enthusiastic and always try to learn, I like to create and develop data science products and applications that are really quality and unique.</p>
                     </div>
                 </div>
-
-
+                
+                <!-- Right Portrait Area -->
+                <div class="right-portrait">
+                    <!-- Social Media Icons -->
+                    <div class="social-icons">
+                        <a href="https://github.com/62200581" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/vilopa-patel-62200581/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:2022vilopapatel@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.kaggle.com/vilopapatel" target="_blank"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                    
+                    <!-- Portrait Image -->
+                    <div class="portrait-container">
+                        <img src="img/profile picture.jpg" alt="Vilopa Patel" class="portrait-image">
+                    </div>
+                    
+                    <!-- Page Indicators -->
+                    <div class="page-indicators">
+                        <div class="indicator active"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="section" id="education">

@@ -17,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigationTabs();
     
     initializeContactForm();
+    
+    initializeSkillBars();
+    initializeSkillLevels();
+    initializeSkillsRadarChart();
+    initializeLanguageChart();
+    initializeProjectFilters();
+    initializeProjectStats();
 
     initializeEnhancedAnimations();
     
@@ -1143,36 +1150,72 @@ function initializeEducationChart() {
     const context = ctx.getContext('2d');
     context.scale(devicePixelRatio, devicePixelRatio);
     
-    // Education data
+    // Education data with proper scale conversion, trend visualization, and predictions
+    // Convert diploma score from 1-10 scale to 0-100 scale: (7.73/10) * 100 = 77.3
     const educationData = {
-        labels: ['2010', '2014', '2021', '2026'],
-        datasets: [{
-            label: 'Academic Performance (GPA/SPI)',
-            data: [80.17, 7.73, 65.00, 70.84],
-            backgroundColor: [
-                'rgba(139, 92, 246, 0.8)',
-                'rgba(102, 126, 234, 0.8)', 
-                'rgba(124, 58, 237, 0.8)',
-                'rgba(168, 85, 247, 0.8)'
-            ],
-            borderColor: [
-                'rgba(139, 92, 246, 1)',
-                'rgba(102, 126, 234, 1)',
-                'rgba(124, 58, 237, 1)', 
-                'rgba(168, 85, 247, 1)'
-            ],
-            borderWidth: 3,
-            tension: 0.4,
-            pointRadius: 8,
-            pointHoverRadius: 12,
-            pointBackgroundColor: '#ffffff',
-            pointBorderColor: '#8B5CF6',
-            pointBorderWidth: 3
-        }]
+        labels: ['2026', '2025', '2021', '2014', '2010'],
+        datasets: [
+            {
+                label: 'Academic Performance',
+                type: 'bar',
+                data: [75.0, 72.5, 65.00, 77.3, 80.17],
+                backgroundColor: [
+                    'linear-gradient(135deg, #10b981, #059669)',   // Gradient green for graduation
+                    'linear-gradient(135deg, #3b82f6, #1d4ed8)',   // Gradient blue for 5th sem
+                    'linear-gradient(135deg, #ef4444, #dc2626)',   // Gradient red for HSC
+                    'linear-gradient(135deg, #10b981, #059669)',   // Gradient green for diploma
+                    'linear-gradient(135deg, #10b981, #059669)'    // Gradient green for SSC
+                ],
+                borderColor: [
+                    '#10b981',
+                    '#3b82f6',
+                    '#ef4444',
+                    '#10b981',
+                    '#10b981'
+                ],
+                borderWidth: 2,
+                borderRadius: 8,
+                borderSkipped: false,
+                barThickness: 35,
+                maxBarThickness: 45,
+                order: 2,
+                hoverBackgroundColor: [
+                    'rgba(16, 185, 129, 0.9)',
+                    'rgba(59, 130, 246, 0.9)',
+                    'rgba(239, 68, 68, 0.9)',
+                    'rgba(16, 185, 129, 0.9)',
+                    'rgba(16, 185, 129, 0.9)'
+                ],
+                hoverBorderWidth: 3
+            },
+            {
+                label: 'Performance Trend',
+                type: 'line',
+                data: [75.0, 72.5, 65.00, 77.3, 80.17], // Updated with predictions
+                borderColor: 'rgba(255, 255, 255, 1)',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                borderWidth: 3,
+                fill: {
+                    target: 'origin',
+                    above: 'rgba(255, 255, 255, 0.1)',
+                    below: 'rgba(255, 255, 255, 0.05)'
+                },
+                tension: 0.4,
+                pointRadius: 6,
+                pointHoverRadius: 10,
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: 'rgba(255, 255, 255, 1)',
+                pointBorderWidth: 3,
+                pointHoverBackgroundColor: '#ffffff',
+                pointHoverBorderColor: '#8B5CF6',
+                pointHoverBorderWidth: 4,
+                order: 1
+            }
+        ]
     };
     
     const config = {
-        type: 'line',
+        type: 'bar',
         data: educationData,
         options: {
             responsive: true,
@@ -1181,7 +1224,7 @@ function initializeEducationChart() {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Educational Journey & Academic Performance',
+                    text: 'Academic Performance Analysis with Trend',
                     font: {
                         size: 18,
                         weight: 'bold'
@@ -1207,25 +1250,36 @@ function initializeEducationChart() {
                         title: function(context) {
                             const year = context[0].label;
                             const educationTitles = {
-                                '2010': 'Secondary School Certificate',
-                                '2014': 'Diploma in Computer Science', 
+                                '2026': 'BSc Applied Data Science (Predicted Graduation)',
+                                '2025': 'BSc Applied Data Science (Predicted 5th Semester)',
                                 '2021': 'Higher Secondary Certificate',
-                                '2026': 'BSc Applied Data Science (Current)'
+                                '2014': 'Diploma in Computer Science', 
+                                '2010': 'Secondary School Certificate'
                             };
                             return educationTitles[year] || year;
                         },
                         label: function(context) {
                             const year = context.label;
                             const institutions = {
-                                '2010': 'GSEB, Amreli, Gujarat',
+                                '2026': 'Modul University, Vienna (Predicted)',
+                                '2025': 'Modul University, Vienna (Predicted)',
+                                '2021': 'NIOS, Rajkot, Gujarat',
                                 '2014': 'S.B. Polytechnic Vadodara',
-                                '2021': 'NIOS, Rajkot, Gujarat', 
-                                '2026': 'Modul University, Vienna'
+                                '2010': 'GSEB, Amreli, Gujarat'
                             };
+                            
+                            // Show original score format for diploma (1-10 scale)
+                            let scoreText = `Score: ${context.parsed.y}`;
+                            if (year === '2014') {
+                                scoreText = `SPI: 7.73 (out of 10)`;
+                            }
+                            
                             return [
-                                `Score: ${context.parsed.y}`,
+                                scoreText,
                                 `Institution: ${institutions[year]}`,
-                                year === '2026' ? 'Status: In Progress' : 'Status: Completed'
+                                year === '2026' ? 'Status: Predicted Graduation' : 
+                                year === '2025' ? 'Status: Predicted 5th Semester' :
+                                'Status: Completed'
                             ];
                         }
                     }
@@ -1249,8 +1303,11 @@ function initializeEducationChart() {
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
-                    }
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        display: false
+                    },
+                    categoryPercentage: 0.6,
+                    barPercentage: 0.7
                 },
                 y: {
                     title: {
@@ -1269,7 +1326,8 @@ function initializeEducationChart() {
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        lineWidth: 1
                     },
                     min: 0,
                     max: 100
@@ -1280,14 +1338,55 @@ function initializeEducationChart() {
                 mode: 'index'
             },
             animation: {
-                duration: 2000,
-                easing: 'easeInOutQuart'
+                duration: 3000,
+                easing: 'easeOutElastic',
+                delay: (context) => {
+                    if (context.datasetIndex === 0) {
+                        return context.dataIndex * 400; // Bars animate with elastic effect
+                    }
+                    return 2000 + (context.dataIndex * 300); // Line animates after bars
+                },
+                onComplete: () => {
+                    // Add sparkle effect after animation completes
+                    addSparkleEffect();
+                }
             }
         }
     };
     
     // Create the chart
     const educationChart = new Chart(ctx, config);
+    
+    // Add sparkle effect function
+    function addSparkleEffect() {
+        const chartContainer = document.querySelector('.chart-container');
+        if (!chartContainer) return;
+        
+        // Create sparkle elements
+        for (let i = 0; i < 15; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: #ffffff;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 10;
+                animation: sparkle 2s ease-out forwards;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+            `;
+            chartContainer.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 2000);
+        }
+    }
     
     // Add click interaction to highlight education cards
     educationChart.canvas.addEventListener('click', function(event) {
@@ -1340,4 +1439,580 @@ function initializeEducationChart() {
             }
         });
     });
+}
+
+// Initialize skill bar animations
+function initializeSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skillBar = entry.target;
+                const width = skillBar.getAttribute('data-width');
+                
+                setTimeout(() => {
+                    skillBar.style.width = width;
+                }, 200);
+                
+                observer.unobserve(skillBar);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    skillBars.forEach(bar => {
+        observer.observe(bar);
+    });
+}
+
+// Initialize skill level colors
+function initializeSkillLevels() {
+    const skillLevels = document.querySelectorAll('.skill-level');
+    
+    skillLevels.forEach(level => {
+        const text = level.textContent.trim();
+        
+        if (text === 'Expert') {
+            level.style.color = '#10B981';
+            level.style.background = 'rgba(16, 185, 129, 0.1)';
+            level.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+        } else if (text === 'Advanced') {
+            level.style.color = '#3B82F6';
+            level.style.background = 'rgba(59, 130, 246, 0.1)';
+            level.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+        } else if (text === 'Intermediate') {
+            level.style.color = '#F59E0B';
+            level.style.background = 'rgba(245, 158, 11, 0.1)';
+            level.style.borderColor = 'rgba(245, 158, 11, 0.2)';
+        }
+    });
+}
+
+// Initialize Skills Radar Chart
+function initializeSkillsRadarChart() {
+    const ctx = document.getElementById('skillsRadarChart');
+    if (!ctx) return;
+    
+    // Fix blurry chart on high-DPI displays
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const rect = ctx.getBoundingClientRect();
+    
+    // Set canvas size to actual display size
+    ctx.width = rect.width * devicePixelRatio;
+    ctx.height = rect.height * devicePixelRatio;
+    
+    // Scale the canvas back down using CSS
+    ctx.style.width = rect.width + 'px';
+    ctx.style.height = rect.height + 'px';
+    
+    // Scale the drawing context so everything draws at the correct size
+    const context = ctx.getContext('2d');
+    context.scale(devicePixelRatio, devicePixelRatio);
+    
+    // Skills data for radar chart
+    const skillsData = {
+        labels: [
+            'Programming',
+            'Databases', 
+            'Machine Learning',
+            'Data Analysis',
+            'Research Skills',
+            'Business Skills',
+            'Web Development',
+            'Statistical Analysis'
+        ],
+        datasets: [{
+            label: 'Current Skills Level',
+            data: [90, 85, 88, 92, 95, 80, 70, 90],
+            backgroundColor: 'rgba(139, 92, 246, 0.2)',
+            borderColor: 'rgba(139, 92, 246, 1)',
+            borderWidth: 3,
+            pointBackgroundColor: 'rgba(139, 92, 246, 1)',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            pointHoverBackgroundColor: '#ffffff',
+            pointHoverBorderColor: 'rgba(139, 92, 246, 1)',
+            pointHoverBorderWidth: 3
+        }, {
+            label: 'Target Skills Level',
+            data: [95, 90, 95, 95, 98, 85, 80, 95],
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderColor: 'rgba(59, 130, 246, 0.8)',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            pointBackgroundColor: 'rgba(59, 130, 246, 0.8)',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: '#ffffff',
+            pointHoverBorderColor: 'rgba(59, 130, 246, 0.8)',
+            pointHoverBorderWidth: 2
+        }]
+    };
+    
+    const config = {
+        type: 'radar',
+        data: skillsData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            devicePixelRatio: devicePixelRatio,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Skills Radar Analysis',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    color: '#ffffff'
+                },
+                legend: {
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 2,
+                    callbacks: {
+                        label: function(context) {
+                            const skillNames = [
+                                'Programming Languages',
+                                'Database Management', 
+                                'Machine Learning & AI',
+                                'Data Analysis & Visualization',
+                                'Research & Critical Thinking',
+                                'Business Administration',
+                                'Web Development',
+                                'Statistical Analysis'
+                            ];
+                            return `${skillNames[context.dataIndex]}: ${context.parsed.r}%`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 10
+                        },
+                        stepSize: 20
+                    },
+                    pointLabels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 11,
+                            weight: '500'
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    angleLines: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            },
+            animation: {
+                duration: 3000,
+                easing: 'easeOutQuart',
+                delay: (context) => context.dataIndex * 200
+            },
+            interaction: {
+                intersect: false
+            }
+        }
+    };
+    
+    // Create the radar chart
+    const skillsRadarChart = new Chart(ctx, config);
+    
+    // Add click interaction to highlight skill categories
+    skillsRadarChart.canvas.addEventListener('click', function(event) {
+        const points = skillsRadarChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+        if (points.length) {
+            const pointIndex = points[0].index;
+            const skillNames = [
+                'Programming Languages',
+                'Database Management', 
+                'Machine Learning & AI',
+                'Data Analysis & Visualization',
+                'Research & Critical Thinking',
+                'Business Administration',
+                'Web Development',
+                'Statistical Analysis'
+            ];
+            
+            // Show skill details
+            showSkillDetails(skillNames[pointIndex], skillsData.datasets[0].data[pointIndex]);
+        }
+    });
+    
+    // Function to show skill details
+    function showSkillDetails(skillName, level) {
+        const skillLevel = level >= 90 ? 'Expert' : level >= 80 ? 'Advanced' : level >= 70 ? 'Intermediate' : 'Beginner';
+        const color = level >= 90 ? '#10B981' : level >= 80 ? '#3B82F6' : level >= 70 ? '#F59E0B' : '#EF4444';
+        
+        // Create a temporary notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 2px solid ${color};
+            z-index: 1000;
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: fadeInOut 3s ease-in-out;
+        `;
+        
+        notification.innerHTML = `
+            <h4 style="margin: 0 0 10px 0; color: ${color};">${skillName}</h4>
+            <p style="margin: 0; font-size: 14px;">Level: <strong style="color: ${color};">${skillLevel}</strong> (${level}%)</p>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 3000);
+    }
+}
+
+// Initialize Language Pie Chart
+function initializeLanguageChart() {
+    const ctx = document.getElementById('languageChart');
+    if (!ctx) return;
+    
+    // Fix blurry chart on high-DPI displays
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const rect = ctx.getBoundingClientRect();
+    
+    // Set canvas size to actual display size
+    ctx.width = rect.width * devicePixelRatio;
+    ctx.height = rect.height * devicePixelRatio;
+    
+    // Scale the canvas back down using CSS
+    ctx.style.width = rect.width + 'px';
+    ctx.style.height = rect.height + 'px';
+    
+    // Scale the drawing context so everything draws at the correct size
+    const context = ctx.getContext('2d');
+    context.scale(devicePixelRatio, devicePixelRatio);
+    
+    // Language data for pie chart with speaking/writing breakdown
+    const languageData = {
+        labels: ['English', 'Hindi', 'Gujarati', 'German'],
+        datasets: [{
+            data: [90, 95, 100, 30],
+            backgroundColor: [
+                'rgba(59, 130, 246, 0.8)',   // Blue for English
+                'rgba(16, 185, 129, 0.8)',   // Green for Hindi
+                'rgba(139, 92, 246, 0.8)',   // Purple for Gujarati
+                'rgba(245, 158, 11, 0.8)'    // Orange for German
+            ],
+            borderColor: [
+                'rgba(59, 130, 246, 1)',
+                'rgba(16, 185, 129, 1)',
+                'rgba(139, 92, 246, 1)',
+                'rgba(245, 158, 11, 1)'
+            ],
+            borderWidth: 3,
+            hoverBackgroundColor: [
+                'rgba(59, 130, 246, 0.9)',
+                'rgba(16, 185, 129, 0.9)',
+                'rgba(139, 92, 246, 0.9)',
+                'rgba(245, 158, 11, 0.9)'
+            ],
+            hoverBorderWidth: 4
+        }]
+    };
+    
+    // Language details with speaking/writing breakdown
+    const languageDetails = {
+        'English': { overall: 90, speaking: 85, writing: 95, level: 'Advanced (C1)', flag: '🇺🇸' },
+        'Hindi': { overall: 95, speaking: 98, writing: 92, level: 'Proficient (C2)', flag: '🇮🇳' },
+        'Gujarati': { overall: 100, speaking: 100, writing: 100, level: 'Proficient (C2)', flag: '🇮🇳' },
+        'German': { overall: 30, speaking: 25, writing: 35, level: 'Beginner (A1)', flag: '🇩🇪' }
+    };
+    
+    const config = {
+        type: 'doughnut',
+        data: languageData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            devicePixelRatio: devicePixelRatio,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Language Proficiency Distribution',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    color: '#ffffff'
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        },
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle'
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 2,
+                    callbacks: {
+                        title: function(context) {
+                            const languageName = context[0].label;
+                            const details = languageDetails[languageName];
+                            return `${details.flag} ${languageName}`;
+                        },
+                        label: function(context) {
+                            const languageName = context.label;
+                            const details = languageDetails[languageName];
+                            return [
+                                `Overall: ${details.overall}% (${details.level})`,
+                                `Speaking: ${details.speaking}%`,
+                                `Writing: ${details.writing}%`
+                            ];
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeOutQuart',
+                animateRotate: true,
+                animateScale: true
+            },
+            interaction: {
+                intersect: false
+            },
+            cutout: '60%'
+        }
+    };
+    
+    // Create the language chart
+    const languageChart = new Chart(ctx, config);
+    
+    // Add click interaction
+    languageChart.canvas.addEventListener('click', function(event) {
+        const points = languageChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+        if (points.length) {
+            const pointIndex = points[0].index;
+            const languageNames = ['English', 'Hindi', 'Gujarati', 'German'];
+            const languageName = languageNames[pointIndex];
+            const details = languageDetails[languageName];
+            
+            // Show detailed language information
+            showLanguageDetails(languageName, details);
+        }
+    });
+    
+    // Function to show detailed language information
+    function showLanguageDetails(languageName, details) {
+        const colors = {
+            'English': '#3B82F6',
+            'Hindi': '#10B981',
+            'Gujarati': '#8B5CF6',
+            'German': '#F59E0B'
+        };
+        
+        const color = colors[languageName];
+        
+        // Create a detailed notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 15px;
+            border: 2px solid ${color};
+            z-index: 1000;
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: fadeInOut 4s ease-in-out;
+            min-width: 250px;
+        `;
+        
+        notification.innerHTML = `
+            <div style="font-size: 2rem; margin-bottom: 10px;">${details.flag}</div>
+            <h4 style="margin: 0 0 15px 0; color: ${color}; font-size: 1.3rem;">${languageName}</h4>
+            <div style="display: flex; flex-direction: column; gap: 8px; text-align: left;">
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Overall:</span>
+                    <strong style="color: ${color};">${details.overall}% (${details.level})</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Speaking:</span>
+                    <strong style="color: ${color};">${details.speaking}%</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Writing:</span>
+                    <strong style="color: ${color};">${details.writing}%</strong>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove notification after 4 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 4000);
+    }
+}
+
+// Initialize Project Filters
+function initializeProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card.enhanced');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            // Filter projects
+            projectCards.forEach((card, index) => {
+                const categories = card.getAttribute('data-category');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    card.classList.remove('hidden');
+                    // Stagger animation
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, index * 100);
+                } else {
+                    card.classList.add('hidden');
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                }
+            });
+        });
+    });
+}
+
+// Initialize Project Stats Animation
+function initializeProjectStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    // Count actual projects by category
+    const projectCards = document.querySelectorAll('.project-card.enhanced');
+    const stats = {
+        total: projectCards.length,
+        machineLearning: 0,
+        webApplications: 0,
+        research: 0
+    };
+    
+    // Count projects by category
+    projectCards.forEach(card => {
+        const categories = card.getAttribute('data-category');
+        if (categories.includes('machine-learning')) stats.machineLearning++;
+        if (categories.includes('web-development')) stats.webApplications++;
+        if (categories.includes('research')) stats.research++;
+    });
+    
+    // Update data targets with real counts
+    const statItems = document.querySelectorAll('.stat-item');
+    statItems.forEach((item, index) => {
+        const numberElement = item.querySelector('.stat-number');
+        let targetValue = 0;
+        
+        switch(index) {
+            case 0: targetValue = stats.total; break;
+            case 1: targetValue = stats.machineLearning; break;
+            case 2: targetValue = stats.webApplications; break;
+            case 3: targetValue = stats.research; break;
+        }
+        
+        numberElement.setAttribute('data-target', targetValue);
+    });
+    
+    const animateStats = () => {
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.floor(current);
+            }, 16);
+        });
+    };
+    
+    // Animate stats when projects section comes into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(animateStats, 500); // Small delay for better effect
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    const projectsSection = document.querySelector('#projects');
+    if (projectsSection) {
+        observer.observe(projectsSection);
+    }
+    
+    // Fallback: animate stats after a delay if observer doesn't trigger
+    setTimeout(() => {
+        if (statNumbers[0].textContent === '0') {
+            animateStats();
+        }
+    }, 3000);
 }

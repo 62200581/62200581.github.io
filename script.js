@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize enhanced interactive features
     initializeEnhancedFeatures();
+    
+    // Initialize education chart
+    initializeEducationChart();
 
     
     // Add smooth scrolling for better UX
@@ -1118,3 +1121,206 @@ rippleStyle.textContent = `
     }
 `;
 document.head.appendChild(rippleStyle);
+
+// Education Chart Initialization
+function initializeEducationChart() {
+    const ctx = document.getElementById('educationChart');
+    if (!ctx) return;
+    
+    // Education data
+    const educationData = {
+        labels: ['2010', '2014', '2021', '2026'],
+        datasets: [{
+            label: 'Academic Performance (GPA/SPI)',
+            data: [80.17, 7.73, 65.00, 70.84],
+            backgroundColor: [
+                'rgba(139, 92, 246, 0.8)',
+                'rgba(102, 126, 234, 0.8)', 
+                'rgba(124, 58, 237, 0.8)',
+                'rgba(168, 85, 247, 0.8)'
+            ],
+            borderColor: [
+                'rgba(139, 92, 246, 1)',
+                'rgba(102, 126, 234, 1)',
+                'rgba(124, 58, 237, 1)', 
+                'rgba(168, 85, 247, 1)'
+            ],
+            borderWidth: 3,
+            tension: 0.4,
+            pointRadius: 8,
+            pointHoverRadius: 12,
+            pointBackgroundColor: '#ffffff',
+            pointBorderColor: '#8B5CF6',
+            pointBorderWidth: 3
+        }]
+    };
+    
+    const config = {
+        type: 'line',
+        data: educationData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Educational Journey & Academic Performance',
+                    font: {
+                        size: 18,
+                        weight: 'bold'
+                    },
+                    color: '#ffffff'
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 2,
+                    callbacks: {
+                        title: function(context) {
+                            const year = context[0].label;
+                            const educationTitles = {
+                                '2010': 'Secondary School Certificate',
+                                '2014': 'Diploma in Computer Science', 
+                                '2021': 'Higher Secondary Certificate',
+                                '2026': 'BSc Applied Data Science (Current)'
+                            };
+                            return educationTitles[year] || year;
+                        },
+                        label: function(context) {
+                            const year = context.label;
+                            const institutions = {
+                                '2010': 'GSEB, Amreli, Gujarat',
+                                '2014': 'S.B. Polytechnic Vadodara',
+                                '2021': 'NIOS, Rajkot, Gujarat', 
+                                '2026': 'Modul University, Vienna'
+                            };
+                            return [
+                                `Score: ${context.parsed.y}`,
+                                `Institution: ${institutions[year]}`,
+                                year === '2026' ? 'Status: In Progress' : 'Status: Completed'
+                            ];
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year',
+                        color: '#ffffff',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Academic Score',
+                        color: '#ffffff',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    min: 0,
+                    max: 100
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart'
+            }
+        }
+    };
+    
+    // Create the chart
+    const educationChart = new Chart(ctx, config);
+    
+    // Add click interaction to highlight education cards
+    educationChart.canvas.addEventListener('click', function(event) {
+        const points = educationChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+        if (points.length) {
+            const year = educationData.labels[points[0].index];
+            
+            // Remove active class from all cards
+            document.querySelectorAll('.education-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Add active class to corresponding card
+            const targetCard = document.querySelector(`[data-year="${year}"]`);
+            if (targetCard) {
+                targetCard.classList.add('active');
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+    
+    // Add hover effects to education cards
+    document.querySelectorAll('.education-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            const year = this.getAttribute('data-year');
+            const yearIndex = educationData.labels.indexOf(year);
+            if (yearIndex !== -1) {
+                educationChart.setActiveElements([{
+                    datasetIndex: 0,
+                    index: yearIndex
+                }]);
+                educationChart.update('none');
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            educationChart.setActiveElements([]);
+            educationChart.update('none');
+        });
+        
+        card.addEventListener('click', function() {
+            const year = this.getAttribute('data-year');
+            const yearIndex = educationData.labels.indexOf(year);
+            if (yearIndex !== -1) {
+                educationChart.setActiveElements([{
+                    datasetIndex: 0,
+                    index: yearIndex
+                }]);
+                educationChart.update('none');
+            }
+        });
+    });
+}

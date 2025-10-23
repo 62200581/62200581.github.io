@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
 </head>
 <body>
@@ -79,46 +80,89 @@
             </div>
         </section>
         <section class="section" id="education">
-            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h4>BSc in Applied Data Science</h4>
-                        <p class="institution">Modul University, Vienna, Austria</p>
-                        <p class="period">5th semester (currently)</p>
-                        <p class="period">GPA: 70.84</p>
-                        <p class="period">Expected: 2026</p>
+            <h3><i class="fas fa-graduation-cap"></i> Education Journey</h3>
+            
+            <!-- Interactive Education Graph -->
+            <div class="education-graph-container">
+                <div class="graph-header">
+                    <h4>Academic Progress Timeline</h4>
+                    <p>Visualizing my educational journey and academic achievements</p>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="educationChart"></canvas>
+                </div>
+                
+                <!-- Education Details Cards -->
+                <div class="education-cards">
+                    <div class="education-card active" data-year="2026">
+                        <div class="card-header">
+                            <h4>BSc Applied Data Science</h4>
+                            <span class="status current">Current</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="institution">Modul University, Vienna, Austria</p>
+                            <div class="progress-info">
+                                <span class="semester">5th Semester</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 62.5%"></div>
+                                </div>
+                                <span class="gpa">GPA: 70.84</span>
+                            </div>
+                            <p class="period">Expected Graduation: 2026</p>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card" data-year="2021">
+                        <div class="card-header">
+                            <h4>Higher Secondary Certificate</h4>
+                            <span class="status completed">Completed</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="institution">NIOS, Rajkot, Gujarat, India</p>
+                            <div class="progress-info">
+                                <span class="gpa">GPA: 65.00</span>
+                            </div>
+                            <p class="period">Completed: 2021</p>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card" data-year="2014">
+                        <div class="card-header">
+                            <h4>Diploma in Computer Science</h4>
+                            <span class="status completed">Completed</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="institution">S.B. Polytechnic Vadodara, Gujarat, India</p>
+                            <div class="progress-info">
+                                <span class="gpa">SPI: 7.73</span>
+                            </div>
+                            <p class="period">Completed: 2014</p>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card" data-year="2010">
+                        <div class="card-header">
+                            <h4>Secondary School Certificate</h4>
+                            <span class="status completed">Completed</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="institution">GSEB, Amreli, Gujarat, India</p>
+                            <div class="progress-info">
+                                <span class="gpa">GPA: 80.17</span>
+                            </div>
+                            <p class="period">Completed: 2010</p>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h4>Diploma | Computer</h4>
-                        <p class="institution">S.B. Polytechnic Vadodara, Gujarat, India</p>
-                        <p class="period">SPI: 7.73</p>
-                        <p class="period">01/2014</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h4>Higher Secondary Certificate</h4>
-                        <p class="institution">National Institute of Open Schooling (NIOS), Rajkot, Gujarat, India</p>
-                        <p class="period">GPA: 65.00</p>
-                        <p class="period">01/2021</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h4>Secondary School Certificate</h4>
-                        <p class="institution">GSEB (Gujarat Secondary Education Board), Amreli, Gujarat, India</p>
-                        <p class="period">GPA: 80.17</p>
-                        <p class="period">01/2010</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h4>Graphical Design Course</h4>
-                        <p class="institution">Professional Design Training</p>
-                        <p class="period">6 months - Comprehensive course in graphic design, poster creation, and logo design</p>
+                
+                <!-- Additional Training -->
+                <div class="training-section">
+                    <h4><i class="fas fa-certificate"></i> Additional Training</h4>
+                    <div class="training-card">
+                        <h5>Graphical Design Course</h5>
+                        <p>Professional Design Training - 6 months</p>
+                        <p>Comprehensive course in graphic design, poster creation, and logo design</p>
                     </div>
                 </div>
             </div>
@@ -457,43 +501,6 @@
         </section>
 
 
-        
-        <!-- Enhanced Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Vilopaben Patel</h4>
-                    <p>BSc in Applied Data Science</p>
-                    <p>Passionate about turning data into insights</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#overview">Overview</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#certificates">Certificates</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="https://github.com/62200581" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/vilopa-patel-62200581/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="mailto:2022vilopa@gmail.com"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.kaggle.com/vilopapatel" target="_blank"><i class="fab fa-kaggle"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Vilopa Patel. All rights reserved.</p>
-                <p>Built with ❤️ and modern web technologies</p>
-            </div>
-        </footer>
     </div>
     
     <!-- Certificate Modal -->

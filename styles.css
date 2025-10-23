@@ -790,9 +790,10 @@ section h3 i {
     
     /* Mobile Navigation Fix */
     .nav-items {
-        flex-direction: column;
+        flex-direction: column !important;
         gap: 8px;
         align-items: stretch;
+        flex-wrap: nowrap !important;
     }
     
     .dark-nav-item {
@@ -800,6 +801,8 @@ section h3 i {
         font-size: 0.9rem;
         text-align: center;
         justify-content: center;
+        width: 100% !important;
+        flex-shrink: 0 !important;
     }
     
     .nav-number {
@@ -878,13 +881,37 @@ section h3 i {
     }
     
     /* Extra small mobile navigation */
+    .nav-items {
+        flex-direction: column !important;
+        gap: 6px;
+        flex-wrap: nowrap !important;
+    }
+    
     .dark-nav-item {
         padding: 10px 12px;
         font-size: 0.85rem;
+        width: 100% !important;
+        flex-shrink: 0 !important;
+    }
+}
+
+/* Extra Mobile Breakpoint for Very Small Screens */
+@media (max-width: 360px) {
+    .nav-items {
+        flex-direction: column !important;
+        gap: 4px;
+        flex-wrap: nowrap !important;
     }
     
-    .nav-items {
-        gap: 6px;
+    .dark-nav-item {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        width: 100% !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .nav-label {
+        font-size: 0.8rem;
     }
 }
 

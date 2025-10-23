@@ -788,6 +788,24 @@ section h3 i {
         padding: 10px;
     }
     
+    /* Mobile Navigation Fix */
+    .nav-items {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    
+    .dark-nav-item {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .nav-number {
+        display: none; /* Hide numbers on mobile for cleaner look */
+    }
+    
     .container {
         margin: 0;
         padding: 20px;
@@ -857,6 +875,16 @@ section h3 i {
     
     .profile-image {
         font-size: 60px;
+    }
+    
+    /* Extra small mobile navigation */
+    .dark-nav-item {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .nav-items {
+        gap: 6px;
     }
 }
 

@@ -1127,6 +1127,22 @@ function initializeEducationChart() {
     const ctx = document.getElementById('educationChart');
     if (!ctx) return;
     
+    // Fix blurry chart on high-DPI displays
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const rect = ctx.getBoundingClientRect();
+    
+    // Set canvas size to actual display size
+    ctx.width = rect.width * devicePixelRatio;
+    ctx.height = rect.height * devicePixelRatio;
+    
+    // Scale the canvas back down using CSS
+    ctx.style.width = rect.width + 'px';
+    ctx.style.height = rect.height + 'px';
+    
+    // Scale the drawing context so everything draws at the correct size
+    const context = ctx.getContext('2d');
+    context.scale(devicePixelRatio, devicePixelRatio);
+    
     // Education data
     const educationData = {
         labels: ['2010', '2014', '2021', '2026'],
@@ -1161,6 +1177,7 @@ function initializeEducationChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            devicePixelRatio: devicePixelRatio,
             plugins: {
                 title: {
                     display: true,

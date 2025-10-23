@@ -1963,6 +1963,12 @@ a:hover {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.chart-container canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
 .education-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

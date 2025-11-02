@@ -24,5 +24,7 @@ Thumbs.db
 
 # Ignore large files that shouldn't be in repo
 *.pdf
+!cv.pdf
 *.docx
-*.ipynb 
+*.ipynb
+!projects/*.ipynb 

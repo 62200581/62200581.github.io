@@ -1519,11 +1519,12 @@ function initializeSkillsRadarChart() {
             'Research Skills',
             'Business Skills',
             'Web Development',
-            'Statistical Analysis'
+            'Statistical Analysis',
+            'PowerBI & BI'
         ],
         datasets: [{
             label: 'Current Skills Level',
-            data: [90, 85, 88, 92, 95, 80, 70, 90],
+            data: [90, 85, 88, 92, 95, 80, 70, 90, 85],
             backgroundColor: 'rgba(139, 92, 246, 0.2)',
             borderColor: 'rgba(139, 92, 246, 1)',
             borderWidth: 3,
@@ -1537,7 +1538,7 @@ function initializeSkillsRadarChart() {
             pointHoverBorderWidth: 3
         }, {
             label: 'Target Skills Level',
-            data: [95, 90, 95, 95, 98, 85, 80, 95],
+            data: [95, 90, 95, 95, 98, 85, 80, 95, 90],
             backgroundColor: 'rgba(59, 130, 246, 0.1)',
             borderColor: 'rgba(59, 130, 246, 0.8)',
             borderWidth: 2,
@@ -1594,7 +1595,8 @@ function initializeSkillsRadarChart() {
                                 'Research & Critical Thinking',
                                 'Business Administration',
                                 'Web Development',
-                                'Statistical Analysis'
+                                'Statistical Analysis',
+                                'PowerBI & Business Intelligence'
                             ];
                             return `${skillNames[context.dataIndex]}: ${context.parsed.r}%`;
                         }
@@ -1655,7 +1657,8 @@ function initializeSkillsRadarChart() {
                 'Research & Critical Thinking',
                 'Business Administration',
                 'Web Development',
-                'Statistical Analysis'
+                'Statistical Analysis',
+                'PowerBI & Business Intelligence'
             ];
             
             // Show skill details

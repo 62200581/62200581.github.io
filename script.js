@@ -1706,7 +1706,7 @@ function initializeSkillsRadarChart() {
     }
 }
 
-// Initialize Language Pie Chart
+// Initialize Language Horizontal Bar Chart
 function initializeLanguageChart() {
     const ctx = document.getElementById('languageChart');
     if (!ctx) return;
@@ -1727,10 +1727,24 @@ function initializeLanguageChart() {
     const context = ctx.getContext('2d');
     context.scale(devicePixelRatio, devicePixelRatio);
     
-    // Language data for pie chart with speaking/writing breakdown
+    // Language details with speaking/writing breakdown
+    const languageDetails = {
+        'English': { overall: 90, speaking: 85, writing: 95, level: 'Advanced (C1)', flag: '🇺🇸' },
+        'Hindi': { overall: 95, speaking: 98, writing: 92, level: 'Proficient (C2)', flag: '🇮🇳' },
+        'Gujarati': { overall: 100, speaking: 100, writing: 100, level: 'Proficient (C2)', flag: '🇮🇳' },
+        'German': { overall: 30, speaking: 25, writing: 35, level: 'Beginner (A1)', flag: '🇩🇪' }
+    };
+    
+    // Language data for horizontal bar chart
     const languageData = {
-        labels: ['English', 'Hindi', 'Gujarati', 'German'],
+        labels: [
+            '🇺🇸 English',
+            '🇮🇳 Hindi', 
+            '🇮🇳 Gujarati',
+            '🇩🇪 German'
+        ],
         datasets: [{
+            label: 'Overall Proficiency',
             data: [90, 95, 100, 30],
             backgroundColor: [
                 'rgba(59, 130, 246, 0.8)',   // Blue for English
@@ -1744,53 +1758,41 @@ function initializeLanguageChart() {
                 'rgba(139, 92, 246, 1)',
                 'rgba(245, 158, 11, 1)'
             ],
-            borderWidth: 3,
+            borderWidth: 2,
+            borderRadius: 8,
+            borderSkipped: false,
+            barThickness: 35,
             hoverBackgroundColor: [
                 'rgba(59, 130, 246, 0.9)',
                 'rgba(16, 185, 129, 0.9)',
                 'rgba(139, 92, 246, 0.9)',
                 'rgba(245, 158, 11, 0.9)'
             ],
-            hoverBorderWidth: 4
+            hoverBorderWidth: 3
         }]
     };
     
-    // Language details with speaking/writing breakdown
-    const languageDetails = {
-        'English': { overall: 90, speaking: 85, writing: 95, level: 'Advanced (C1)', flag: '🇺🇸' },
-        'Hindi': { overall: 95, speaking: 98, writing: 92, level: 'Proficient (C2)', flag: '🇮🇳' },
-        'Gujarati': { overall: 100, speaking: 100, writing: 100, level: 'Proficient (C2)', flag: '🇮🇳' },
-        'German': { overall: 30, speaking: 25, writing: 35, level: 'Beginner (A1)', flag: '🇩🇪' }
-    };
-    
     const config = {
-        type: 'doughnut',
+        type: 'bar',
         data: languageData,
         options: {
+            indexAxis: 'y', // Makes it horizontal
             responsive: true,
             maintainAspectRatio: false,
             devicePixelRatio: devicePixelRatio,
             plugins: {
                 title: {
                     display: true,
-                    text: 'Language Proficiency Distribution',
+                    text: 'Language Proficiency Levels',
                     font: {
-                        size: 16,
+                        size: 18,
                         weight: 'bold'
                     },
-                    color: '#ffffff'
+                    color: '#ffffff',
+                    padding: 20
                 },
                 legend: {
-                    position: 'bottom',
-                    labels: {
-                        color: '#ffffff',
-                        font: {
-                            size: 12
-                        },
-                        padding: 20,
-                        usePointStyle: true,
-                        pointStyle: 'circle'
-                    }
+                    display: false // Hide legend since we have language names in labels
                 },
                 tooltip: {
                     backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -1798,34 +1800,82 @@ function initializeLanguageChart() {
                     bodyColor: '#ffffff',
                     borderColor: '#8B5CF6',
                     borderWidth: 2,
+                    padding: 12,
                     callbacks: {
                         title: function(context) {
-                            const languageName = context[0].label;
+                            const index = context[0].dataIndex;
+                            const languageNames = ['English', 'Hindi', 'Gujarati', 'German'];
+                            const languageName = languageNames[index];
                             const details = languageDetails[languageName];
                             return `${details.flag} ${languageName}`;
                         },
                         label: function(context) {
-                            const languageName = context.label;
+                            const index = context.dataIndex;
+                            const languageNames = ['English', 'Hindi', 'Gujarati', 'German'];
+                            const languageName = languageNames[index];
                             const details = languageDetails[languageName];
                             return [
                                 `Overall: ${details.overall}% (${details.level})`,
                                 `Speaking: ${details.speaking}%`,
                                 `Writing: ${details.writing}%`
                             ];
+                        },
+                        afterLabel: function(context) {
+                            return '';
                         }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        },
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        lineWidth: 1
+                    },
+                    title: {
+                        display: true,
+                        text: 'Proficiency Level (%)',
+                        color: '#ffffff',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        padding: 10
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 13,
+                            weight: '500'
+                        }
+                    },
+                    grid: {
+                        display: false
                     }
                 }
             },
             animation: {
                 duration: 2000,
                 easing: 'easeOutQuart',
-                animateRotate: true,
-                animateScale: true
+                delay: (context) => context.dataIndex * 200
             },
             interaction: {
-                intersect: false
-            },
-            cutout: '60%'
+                intersect: false,
+                mode: 'index'
+            }
         }
     };
     

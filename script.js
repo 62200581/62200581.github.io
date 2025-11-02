@@ -1926,13 +1926,18 @@ function initializeProjectFilters() {
                 const categories = card.getAttribute('data-category');
                 
                 if (filter === 'all' || categories.includes(filter)) {
+                    // Show card
                     card.classList.remove('hidden');
-                    // Stagger animation
+                    card.style.display = '';
+                    // Reset and animate
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'scale(1)';
-                    }, index * 100);
+                    }, index * 50);
                 } else {
+                    // Hide card
                     card.classList.add('hidden');
                     card.style.opacity = '0';
                     card.style.transform = 'scale(0.8)';

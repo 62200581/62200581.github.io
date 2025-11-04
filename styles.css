@@ -2929,6 +2929,11 @@ a:hover {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
+}
+
+.education-card * {
+    box-sizing: border-box;
 }
 
 .education-card::before {
@@ -3109,12 +3114,34 @@ a:hover {
     
     .education-card {
         padding: 20px;
+        overflow: visible;
     }
     
     .card-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+    
+    .card-header h4 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        width: 100%;
+    }
+    
+    .card-body {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .card-body .period {
+        display: block;
+        width: 100%;
+        text-align: center;
+        word-wrap: break-word;
+        white-space: normal;
+        margin-top: 15px;
+        padding: 8px 12px;
     }
     
     .graph-header h4 {
@@ -3136,6 +3163,12 @@ a:hover {
     .language-chart-container {
         padding: 20px;
     }
+    
+    /* Disable chart tooltips on mobile or make them smaller */
+    .chartjs-tooltip {
+        max-width: 90vw !important;
+        font-size: 0.8rem !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3150,6 +3183,27 @@ a:hover {
     
     .card-header h4 {
         font-size: 1.1rem;
+    }
+    
+    .card-body .period {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    
+    .status {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+    }
+    
+    .progress-info .gpa {
+        font-size: 1rem;
+    }
+    
+    /* Smaller tooltips on very small screens */
+    .chartjs-tooltip {
+        max-width: 85vw !important;
+        font-size: 0.75rem !important;
+        padding: 8px !important;
     }
 }
 

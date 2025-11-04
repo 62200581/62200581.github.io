@@ -1214,6 +1214,9 @@ function initializeEducationChart() {
         ]
     };
     
+    // Detect mobile device
+    const isMobile = window.innerWidth <= 768;
+    
     const config = {
         type: 'bar',
         data: educationData,
@@ -1226,26 +1229,37 @@ function initializeEducationChart() {
                     display: true,
                     text: 'Academic Performance Analysis with Trend',
                     font: {
-                        size: 18,
+                        size: isMobile ? 14 : 18,
                         weight: 'bold'
                     },
-                    color: '#ffffff'
+                    color: '#ffffff',
+                    padding: isMobile ? 10 : 20
                 },
                 legend: {
                     display: true,
                     labels: {
                         color: '#ffffff',
                         font: {
-                            size: 14
+                            size: isMobile ? 11 : 14
                         }
                     }
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
                     titleColor: '#ffffff',
                     bodyColor: '#ffffff',
                     borderColor: '#8B5CF6',
                     borderWidth: 2,
+                    padding: isMobile ? 8 : 12,
+                    titleFont: {
+                        size: isMobile ? 11 : 14
+                    },
+                    bodyFont: {
+                        size: isMobile ? 10 : 12
+                    },
+                    enabled: true,
+                    intersect: false,
+                    position: isMobile ? 'nearest' : 'average',
                     callbacks: {
                         title: function(context) {
                             const year = context[0].label;

@@ -668,6 +668,13 @@ section h3 i {
     margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
 /* Enhanced Project Cards */
 .project-card.enhanced {
     background: rgba(255, 255, 255, 0.05);
@@ -1629,11 +1636,18 @@ section h3 i {
     }
     
     /* Mobile Navigation Fix */
+    .dark-nav {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+    
     .nav-items {
         flex-direction: column !important;
         gap: 8px;
         align-items: stretch;
         flex-wrap: nowrap !important;
+        width: 100%;
     }
     
     .dark-nav-item {
@@ -3084,6 +3098,10 @@ a:hover {
         padding: 15px;
     }
     
+    .chart-container canvas {
+        max-height: 100% !important;
+    }
+    
     .education-cards {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -3101,6 +3119,22 @@ a:hover {
     
     .graph-header h4 {
         font-size: 1.3rem;
+    }
+    
+    .radar-chart-container {
+        height: 300px !important;
+    }
+    
+    .pie-chart-container {
+        height: 300px !important;
+    }
+    
+    .skills-chart-container {
+        padding: 20px;
+    }
+    
+    .language-chart-container {
+        padding: 20px;
     }
 }
 
@@ -3330,13 +3364,33 @@ a:hover {
 @media (max-width: 768px) {
     .dark-layout {
         grid-template-columns: 1fr;
-        padding: 40px 20px;
+        padding: 30px 15px;
         min-height: auto;
+        margin: -20px;
+        gap: 30px;
     }
     
     .left-content {
         padding: 0;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
+        order: 2;
+    }
+    
+    .right-portrait {
+        order: 1;
+        margin-bottom: 20px;
+    }
+    
+    .name-title {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .intro-text {
+        font-size: 0.95rem;
     }
     
     .section-number {
@@ -3353,12 +3407,26 @@ a:hover {
     }
     
     .social-icons {
-        top: 20px;
-        right: 20px;
+        position: relative;
+        top: auto;
+        right: auto;
         gap: 15px;
+        justify-content: center;
+        margin-bottom: 20px;
     }
     
     .page-indicators {
-        right: 10px;
+        display: none; /* Hide on mobile for cleaner look */
+    }
+    
+    .portrait-container {
+        max-width: 100%;
+    }
+    
+    .portrait-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
     }
 } 

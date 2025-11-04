@@ -25,8 +25,10 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
 }
 
 /* Header Section */
@@ -169,7 +171,8 @@ section#overview {
     padding: 0;
     background: transparent;
     border: none;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 section:hover {
@@ -1751,30 +1754,28 @@ section h3 i {
 }
 
 @media (max-width: 480px) {
-    .profile-details h1 {
+    .dark-layout {
+        padding: 20px 15px;
+    }
+    
+    .left-content {
+        padding: 0 5px;
+    }
+    
+    .name-title {
         font-size: 1.8rem;
     }
     
-    section {
-        padding: 20px;
+    .tagline {
+        font-size: 0.95rem;
     }
     
-    .profile-image {
-        font-size: 60px;
+    .intro-text {
+        font-size: 0.9rem;
     }
     
-    /* Extra small mobile navigation */
-    .nav-items {
-        flex-direction: column !important;
-        gap: 6px;
-        flex-wrap: nowrap !important;
-    }
-    
-    .dark-nav-item {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-        width: 100% !important;
-        flex-shrink: 0 !important;
+    .container {
+        padding: 15px;
     }
 }
 
@@ -3230,6 +3231,7 @@ a:hover {
     justify-content: center;
     padding: 20px 40px 20px 0;
     color: white;
+    box-sizing: border-box;
 }
 
 /* Professional Header */
@@ -3418,16 +3420,35 @@ a:hover {
 @media (max-width: 768px) {
     .dark-layout {
         grid-template-columns: 1fr;
-        padding: 30px 15px;
+        padding: 30px 20px;
         min-height: auto;
-        margin: -20px;
+        margin: 0;
         gap: 30px;
+        overflow-x: hidden;
     }
     
     .left-content {
-        padding: 0;
+        padding: 0 10px;
         margin-bottom: 30px;
         order: 2;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .professional-header {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .name-title,
+    .tagline,
+    .intro-text {
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
     }
     
     .right-portrait {
